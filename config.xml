@@ -1,7 +1,7 @@
 <service>
 	<serviceName>sudoku</serviceName>
-	<serviceDescription><![CDATA[Devuelve un sudoku aleatorio as&iacute; como su soluci&oacute;n.]]></serviceDescription>
-	<creatorEmail>salvi.pascual@gmail.com</creatorEmail>
+	<serviceDescription>Devuelve un sudoku aleatorio asi como su solucion</serviceDescription>
+	<creatorEmail>salvi@apretaste.com</creatorEmail>
 	<serviceCategory>ocio</serviceCategory>
 	<serviceUsage>
 		<![CDATA[
