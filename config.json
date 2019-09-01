@@ -1,0 +1,8 @@
+{
+	"name": "sudoku",
+	"version": "11",
+	"description": "Devuelve un sudoku aleatorio asi como su solucion",
+	"category": "ocio",
+	"creator": "kumahavana@gmail.com",
+	"listed": true
+}
