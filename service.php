@@ -14,6 +14,7 @@ class SudokuService extends ApretasteService
      */
     public function _main()
     {
+        $this->response->setLayout('sudoku.ejs');
         $sudoku = [];
         for ($i = 0; $i < 81; $i++) {
             $sudoku[] = 0;
