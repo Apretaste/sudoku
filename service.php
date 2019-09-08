@@ -165,10 +165,8 @@ class SudokuService extends ApretasteService
                 $classes = "";
                 if ($v <= 0) {
                     $classes = "sudoku-cell sudoku-hole";
-                    $style .= 'background: white;';
                 } else {
                     $classes = "sudoku-cell sudoku-rock";
-                    $style .= 'background: #dddddd;';
                 }
 
                 $sq = $squares[$i];

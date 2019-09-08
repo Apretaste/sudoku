@@ -13,8 +13,18 @@ input.select-dropdown {
 
 .sudoku-cell {
   border: 1px solid gray;
+  margin-top: 2px;
 }
 
 .sudoku-rock {
   background: #eeeeee;
 }
+
+.row-selected, .col-selected {
+  background: #6fbf89;
+}
+
+.square-selected {
+  background: gray;
+}
+
