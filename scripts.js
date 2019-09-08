@@ -33,10 +33,11 @@ $(function(){
     $(".col-" + col).addClass('col-selected');
     $(".square-" + sq).addClass('square-selected');
   });
+
+  $(".keyboard").click(function(){
+    if (sudoku.selected !== null) {
+      $(sudoku.selected).html($(this).attr('data-value'));
+    }
+  });
 });
 
-$(".keyboard").click(function(){
-  if (sudoku.selected !== null) {
-    $(sudoku.selected).html($(this).attr('data-value'));
-  }
-});
