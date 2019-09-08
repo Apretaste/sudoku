@@ -32,8 +32,9 @@ input.select-dropdown {
   animation: blinker 1s linear infinite;
 }
 
-.keyboard [
-]
+.keyboard {
+
+}
 
 @keyframes blinker {
   50% { opacity: 0; }
