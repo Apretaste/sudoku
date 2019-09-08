@@ -46,7 +46,7 @@ $(function(){
 function validate(){
 
   var allCells = $(".sudoku-cell");
-  allCells.removeClass('red');
+  allCells.removeClass('red lighten-3');
   allCells.removeClass('blink_me');
   allCells.removeClass('row-selected');
   allCells.removeClass('col-selected');
@@ -59,7 +59,7 @@ function validate(){
       if (typeof sudokuGame.userSolution[i] !== 'undefined') v = sudokuGame.userSolution[i];
       if (original[i] !== v) {
         valid = false;
-        $('#sudoku-cell-'+i).addClass('red');
+        $('#sudoku-cell-'+i).addClass('red lighten-3');
       }
     }
   }
