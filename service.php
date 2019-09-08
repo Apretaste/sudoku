@@ -170,7 +170,7 @@ class SudokuService extends ApretasteService
                 }
 
                 $sq = $squares[$i];
-                $html .= "<td id=\"sudoku-cell-$i\" class=\"$classes row-$x col-$y square-$sq\" data-row=\"$x\" data-col=\"$y\" data-square=\"$sq\" style=\"$style\">";
+                $html .= "<td id=\"sudoku-cell-$i\" class=\"$classes row-$x col-$y square-$sq\" data-row=\"$x\" data-col=\"$y\" data-square=\"$sq\" style=\"$style\" data-i=\"$i\">";
 
                 if ($v == '&nbsp;') {
                     /*if ($for_print) {
