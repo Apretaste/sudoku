@@ -5,7 +5,7 @@ function showToast(text) {
   });
 }
 
-var sudoku = {
+var sudokuGame = {
   userSolution: [],
   selected: null
 };
@@ -13,7 +13,7 @@ var sudoku = {
 $(function(){
   $(".sudoku-hole").click(function(){
 
-    sudoku.selected = $(this).attr('id');
+    sudokuGame.selected = $(this).attr('id');
 
     var allCells = $(".sudoku-cell");
     var row = $(this).attr('data-row');
@@ -35,10 +35,10 @@ $(function(){
   });
 
   $(".keyboard").click(function(){
-    if (sudoku.selected !== null) {
-      var cell = $('#' + sudoku.selected);
+    if (sudokuGame.selected !== null) {
+      var cell = $('#' + sudokuGame.selected);
       cell.html($(this).attr('data-value'));
-      sudoku.userSolution[cell.attr('data-i')] = $(this).attr('data-value');
+      sudokuGame.userSolution[cell.attr('data-i')] = $(this).attr('data-value');
     }
   });
 });
