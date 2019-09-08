@@ -1,11 +1,5 @@
 <div class="row">
 	<div class="col s12 l12 m12 x12">
-		<h1>Sudoku</h1>
-	</div>
-</div>
-
-<div class="row">
-	<div class="col s12 l12 m12 x12">
 	<p>Rellene las celdas vac&iacute;as con un n&uacute;mero del <b>1 al 9</b> de tal forma <b>que no se repitan</b>
 	   en cada columna, fila y cuadrante. Los cuadrantes est&aacute;n delimitados por los borders negros.
 	   Despl&aacute;cese hacia abajo para ver la soluci&oacute;n.</p>
@@ -13,38 +7,45 @@
 </div>
 
 <div class="row">
-	<div class="col s6 l6 m6 x6">
+	<div class="col s6 l3 m6 xl6 sm6 offset-l3">
 		<a class="btn" href="#!" onclick="apretaste.send({command: 'SUDOKU'});" >Otro Sudoku!"</a>
 	</div>
-	<div class="col s6 l6 m6 x6">
-		<a href="#!" onclick="apretaste.send({command: 'WIKIPEDIA sudoku'});">M&aacute;s sobre Sudoku</a>
+	<div class="col s6 l3 m6 xl6 ">
+		<a class="btn" href="#!" onclick="validate();">Evaluar</a>
 	</div>
 </div>
 	
 <div class="row">
 	<div class="col s12 l12 m12 x12">
-		<h1>Completar</h1>
 		<%- problem %>
 	</div>
 </div>
 
-<div class="row">
-	<div class="col s12 l12 m12 x12">
-		<h1>Imprimir</h1>
-		<%- problem_print %>
-	</div>
-</div>
-
-<div class="row">
-	<div class="col s12 l12 m12 x12">
-		<h1>Soluci&oacute;n</h1>
-		<%- solution %>
-	</div>
-</div>
+<% for (var i = 1; i<=9; i++) { %>
+	<a href="#!" class="keyboard" data-value="<%= i %>"><%= i %></a>
+<% } %>
 
 <div class="row">
 	<div class="col s12 l12 m12 x12">
 		<p><small>&iquest;Es de su agrado este juego?</small></p>
 		<a class="btn" href="#!" onclick="apretaste.send({command: 'SUDOKU'});">Otro Sudoku!</a>
 	</div>
+</div>
+
+
+<div class="fixed-action-btn">
+	<a class="btn-floating btn-large green" onclick="apretaste.send({command: 'SUDOKU'});">
+		<i class="large material-icons">border_clear</i>
+	</a>
+	<ul>
+		<% if (level !== "Fácil") { %>
+			<li><a href="#!" class="btn-floating " onclick="apretaste.send({command: 'AJEDREZ', data: {query: 'FACIL'}});"><i class="material-icons left">border_horizontal</i>F&aacute;cil</a></li>
+		<% } %>
+		<% if (level !== "Intermedio") { %>
+			<li><a href="#!" class="btn-floating " onclick="apretaste.send({command: 'AJEDREZ', data: {query: ''}});"><i class="material-icons left">border_outer</i>Medio</a></li>
+		<% } %>
+		<% if (level !== "Difícil") { %>
+		<li><a href="#!" class="btn-floating " onclick="apretaste.send({command: 'AJEDREZ', data: {query: 'DIFICIL'}});"><i class="material-icons left">border_all</i>Dif&iacute;cil&eacute;lite</a>
+			<% } %>
+	</ul>
 </div>

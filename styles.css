@@ -1,0 +1,12 @@
+td, th {
+  text-align: center;
+  font-size: 2rem;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  min-width: 2.5rem;
+}
+
+input.select-dropdown {
+  font-size: 2rem;
+  border: 0px;
+}

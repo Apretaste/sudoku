@@ -21,7 +21,7 @@ class SudokuService extends ApretasteService
         }
 
         $this->solve($sudoku);
-
+        $original = $sudoku;
         $solution = $sudoku;
 
         $hide = mt_rand(40, 60);
@@ -38,12 +38,14 @@ class SudokuService extends ApretasteService
 
         // create response
         $responseContent = [
-            "solution"      => $htmlsolution,
-            "problem"       => $htmlproblem,
-            "problem_print" => $forprint
+            'sudoku'        => $sudoku,
+            'original'      => $original,
+            'solution'      => $htmlsolution,
+            'problem'       => $htmlproblem,
+            'problem_print' => $forprint
         ];
 
-        $this->response->setTemplate("basic.ejs", $responseContent);
+        $this->response->setTemplate('basic.ejs', $responseContent);
     }
 
 
@@ -147,24 +149,28 @@ class SudokuService extends ApretasteService
                     $v = '&nbsp;';
                 }
 
+                $classes = "";
                 if ($v <= 0) {
-                    $style .= "background: white;";
+                    $classes = "sudoku-cell sudoku-hole";
+                    $style .= 'background: white;';
                 } else {
-                    $style .= "background: #dddddd;";
+                    $classes = "sudoku-cell sudoku-rock";
+                    $style .= 'background: #dddddd;';
                 }
 
-                $html .= "<td width = \"40\" height = \"40\" style=\"$style;font-size:25px;font-family:verdana;\">";
+                $html .= "<td id=\"sudoku-".($x * 9 + $y)."\" class=\"$classes\">";
 
                 if ($v == '&nbsp;') {
-                    if ($for_print) {
+                    /*if ($for_print) {
                         $html .= '&nbsp;';
-                    } else {
-                        $html .= '<select style="padding: 3px; border: none; background:white;"><option value="-">&nbsp;</option>';
+                    } else {*/
+                        $html .= '?';
+                        /*$html .= '<select style="padding: 3px; border: none; background:white;"><option value="-">&nbsp;</option>';
                         for ($i = 1; $i <= 9; $i++) {
                             $html .= '<option value="'.$i.'">'.$i.'</option>';
                         }
-                        $html .= '</select>';
-                    }
+                        $html .= '</select>';*/
+                   // }
                 } else {
                     $html .= $v;
                 }
@@ -271,19 +277,19 @@ class SudokuService extends ApretasteService
 
     function print_possible($possible)
     {
-        $html = "<table bgcolor = \"#ff0000\" cellspacing = \"1\" cellpadding = \"2\">";
+        $html = '<table bgcolor = "#ff0000" cellspacing = "1" cellpadding = "2">';
         for ($x = 0; $x <= 8; $x++) {
-            $html .= "<tr bgcolor = \"yellow\" align = \"center\">";
+            $html .= '<tr bgcolor = "yellow" align = "center">';
             for ($y = 0; $y <= 8; $y++) {
-                $values = "";
+                $values = '';
                 for ($z = 0; $z <= count($possible[$x * 9 + $y]); $z++) {
                     $values .= $possible[$x * 9 + $y][$z];
                 }
                 $html .= "<td width = \"20\" height = \"20\">$values</td>";
             }
-            $html .= "</tr>";
+            $html .= '</tr>';
         }
-        $html .= "</table>";
+        $html .= '</table>';
 
         return $html;
     }
@@ -329,8 +335,8 @@ class SudokuService extends ApretasteService
         }
 
         $end = microtime();
-        $ms_start = explode(" ", $start);
-        $ms_end = explode(" ", $end);
+        $ms_start = explode(' ', $start);
+        $ms_end = explode(' ', $end);
         $total_time = round(($ms_end[1] - $ms_start[1] + $ms_end[0] - $ms_start[0]), 2);
     }
 }
