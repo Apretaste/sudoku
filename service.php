@@ -176,7 +176,7 @@ class SudokuService extends ApretasteService
                     /*if ($for_print) {
                         $html .= '&nbsp;';
                     } else {*/
-                        $html .= '?';
+                        $html .= '&nbsp;';
                         /*$html .= '<select style="padding: 3px; border: none; background:white;"><option value="-">&nbsp;</option>';
                         for ($i = 1; $i <= 9; $i++) {
                             $html .= '<option value="'.$i.'">'.$i.'</option>';
