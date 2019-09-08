@@ -10,3 +10,11 @@ input.select-dropdown {
   font-size: 2rem;
   border: 0px;
 }
+
+.sudoku-cell {
+  border: 1px solid gray;
+}
+
+.sudoku-rock {
+  background: #eeeeee;
+}

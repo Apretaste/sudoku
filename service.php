@@ -120,9 +120,22 @@ class SudokuService extends ApretasteService
     {
         $html = "<table align = \"center\" cellspacing = \"1\" cellpadding = \"2\">\n";
 
+        $squares = [
+            1,1,1,2,2,2,3,3,3,
+            1,1,1,2,2,2,3,3,3,
+            1,1,1,2,2,2,3,3,3,
+            4,4,4,5,5,5,5,5,5,
+            4,4,4,5,5,5,6,6,6,
+            4,4,4,5,5,5,6,6,6,
+            7,7,7,8,8,8,9,9,9,
+            7,7,7,8,8,8,9,9,9,
+            7,7,7,8,8,8,9,9,9
+        ];
+
         for ($x = 0; $x <= 8; $x++) {
             $html .= "<tr align = \"center\">\n";
             for ($y = 0; $y <= 8; $y++) {
+                $i = ($x * 9 + $y);
                 $style = 'border-right: 1px solid gray;';
 
                 if (($x + 1) % 3 == 0) {
@@ -141,7 +154,7 @@ class SudokuService extends ApretasteService
                     $style .= 'border-left: 3px solid black;';
                 }
 
-                $v = $sudoku[$x * 9 + $y];
+                $v = $sudoku[$i];
 
                 if ($v < 0) {
                     $v = 0 - $v;
@@ -158,7 +171,8 @@ class SudokuService extends ApretasteService
                     $style .= 'background: #dddddd;';
                 }
 
-                $html .= "<td id=\"sudoku-".($x * 9 + $y)."\" class=\"$classes\">";
+                $sq = $squares[$i];
+                $html .= "<td id=\"sudoku-cell-$i\" class=\"$classes row-$x col-$y square-$sq\" data-row=\"$x\" data-col=\"$y\" data-square=\"$sq\" style=\"$style\">";
 
                 if ($v == '&nbsp;') {
                     /*if ($for_print) {
