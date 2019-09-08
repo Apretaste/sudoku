@@ -20,10 +20,14 @@
 		<%- problem %>
 	</div>
 </div>
-
-<% for (var i = 1; i<=9; i++) { %>
-	<a href="#!" class="keyboard" data-value="<%= i %>"><%= i %></a>
-<% } %>
+<div class="row">
+	<div class="col right">
+		<a href="#!" class="btn keyboard" data-value=""><i class="material-icons">trash</i></a>
+		<% for (var i = 1; i<=9; i++) { %>
+			<a href="#!" class="btn keyboard" data-value="<%= i %>"><%= i %></a>
+		<% } %>
+	</div>
+</div>
 
 <div class="fixed-action-btn">
 	<a class="btn-floating btn-large green" onclick="apretaste.send({command: 'SUDOKU'});">

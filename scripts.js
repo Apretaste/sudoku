@@ -1,5 +1,12 @@
+var sudoku = {
+  userSolution: [],
+  selected: null
+};
 $(function(){
   $(".sudoku-hole").click(function(){
+
+    sudoku.selected = $(this).attrs('id');
+
     var allCells = $(".sudoku-cell");
     var row = $(this).attr('data-row');
     var col = $(this).attr('data-col');
@@ -18,4 +25,10 @@ $(function(){
     $(".col-" + col).addClass('col-selected');
     $(".square-" + sq).addClass('square-selected');
   });
+});
+
+$(".keyboard").click(function(){
+  if (sudoku.selected !== null) {
+    $(sudoku.selected).html($(this).attr('data-value'));
+  }
 });
