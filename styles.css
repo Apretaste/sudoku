@@ -25,6 +25,13 @@ input.select-dropdown {
 }
 
 .square-selected {
-  background: gray;
+  background: #33a673;
 }
 
+.blink_me {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% { opacity: 0; }
+}

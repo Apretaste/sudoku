@@ -5,14 +5,14 @@ $(function(){
     var col = $(this).attr('data-col');
     var sq = $(this).attr('data-square');
 
-    allCells.removeClass('pulse');
-    allCells.removeClass('btn');
+    allCells.removeClass('blink_me');
+    //allCells.removeClass('btn');
     allCells.removeClass('row-selected');
     allCells.removeClass('col-selected');
     allCells.removeClass('square-selected');
 
-    $(this).addClass('pulse');
-    $(this).addClass('btn');
+    $(this).addClass('blink_me');
+    //$(this).addClass('btn');
 
     $(".row-" + row).addClass('row-selected');
     $(".col-" + col).addClass('col-selected');
