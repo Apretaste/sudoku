@@ -36,8 +36,9 @@ $(function(){
 
   $(".keyboard").click(function(){
     if (sudoku.selected !== null) {
-      $(sudoku.selected).html($(this).attr('data-value'));
-      sudoku.userSolution[$(sudoku.selected).attr('data-i')] = $(this).attr('data-value');
+      var cell = $('#' + sudoku.selected);
+      cell.html($(this).attr('data-value'));
+      sudoku.userSolution[cell.attr('data-i')] = $(this).attr('data-value');
     }
   });
 });
