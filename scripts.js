@@ -46,6 +46,7 @@ $(function(){
 function validate(){
 
   var allCells = $(".sudoku-cell");
+  allCells.removeClass('red');
   allCells.removeClass('blink_me');
   allCells.removeClass('row-selected');
   allCells.removeClass('col-selected');
@@ -58,7 +59,7 @@ function validate(){
       if (typeof sudokuGame.userSolution[i] !== 'undefined') v = sudokuGame.userSolution[i];
       if (original[i] !== v) {
         valid = false;
-        break;
+        $('#sudoku-cell-'+i).addClass('red');
       }
     }
   }
@@ -66,7 +67,7 @@ function validate(){
   if (valid) {
     showToast('Bien !! Resolviste el Sudoku!');
   } else {
-    showToast('Mal !! Algo no esta bien en tu Sudoku!');
+    showToast('Mal !! Algo no est&aacute; bien en tu Sudoku!');
   }
 
   return valid;
