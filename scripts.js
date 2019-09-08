@@ -38,8 +38,37 @@ $(function(){
     if (sudokuGame.selected !== null) {
       var cell = $('#' + sudokuGame.selected);
       cell.html($(this).attr('data-value'));
-      sudokuGame.userSolution[cell.attr('data-i')] = $(this).attr('data-value');
+      sudokuGame.userSolution[cell.attr('data-i')] = Number($(this).attr('data-value'));
     }
   });
 });
+
+function validate(){
+
+  var allCells = $(".sudoku-cell");
+  allCells.removeClass('blink_me');
+  allCells.removeClass('row-selected');
+  allCells.removeClass('col-selected');
+  allCells.removeClass('square-selected');
+
+  var valid = true;
+  for (var i =0; i<81;i++) {
+    var v = -1;
+    if (sudoku[i] === 0) {
+      if (typeof sudokuGame.userSolution[i] !== 'undefined') v = sudokuGame.userSolution[i];
+      if (original[i] !== v) {
+        valid = false;
+        break;
+      }
+    }
+  }
+
+  if (valid) {
+    showToast('Bien !! Resolviste el Sudoku!');
+  } else {
+    showToast('Mal !! Algo no esta bien en tu Sudoku!');
+  }
+
+  return valid;
+}
 

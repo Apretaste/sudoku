@@ -33,14 +33,14 @@ class SudokuService extends ApretasteService
         }
 
         $htmlproblem = $this->print_sudoku($sudoku);
-        $htmlsolution = $this->print_sudoku($solution);
+       // $htmlsolution = $this->print_sudoku($solution);
         $forprint = $this->print_sudoku($sudoku, true);
 
         // create response
         $responseContent = [
             'sudoku'        => $sudoku,
             'original'      => $original,
-            'solution'      => $htmlsolution,
+            //'solution'      => $htmlsolution,
             'problem'       => $htmlproblem,
             'problem_print' => $forprint
         ];
