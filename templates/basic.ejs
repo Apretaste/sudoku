@@ -37,15 +37,4 @@
 	<a class="btn-floating btn-large green" onclick="apretaste.send({command: 'SUDOKU'});">
 		<i class="large material-icons">border_clear</i>
 	</a>
-	<ul>
-		<% if (level !== "Fácil") { %>
-			<li><a href="#!" class="btn-floating " onclick="apretaste.send({command: 'AJEDREZ', data: {query: 'FACIL'}});"><i class="material-icons left">border_horizontal</i>F&aacute;cil</a></li>
-		<% } %>
-		<% if (level !== "Intermedio") { %>
-			<li><a href="#!" class="btn-floating " onclick="apretaste.send({command: 'AJEDREZ', data: {query: ''}});"><i class="material-icons left">border_outer</i>Medio</a></li>
-		<% } %>
-		<% if (level !== "Difícil") { %>
-		<li><a href="#!" class="btn-floating " onclick="apretaste.send({command: 'AJEDREZ', data: {query: 'DIFICIL'}});"><i class="material-icons left">border_all</i>Dif&iacute;cil&eacute;lite</a>
-			<% } %>
-	</ul>
 </div>
