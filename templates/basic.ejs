@@ -1,4 +1,10 @@
 <div class="row">
+	<div class="col">
+	<h1>A jugar Sudoku!</h1>
+	</div>
+</div>
+
+<div class="row">
 	<div class="col s12 l12 m12 x12">
 		<%- problem %>
 	</div>
@@ -7,7 +13,7 @@
 <div class="row">
 	<div class="col s6 l6 xl6 m62">
 	<p>Toque cada casilla vacia para poner un n&uacute;mero del <b>1 al 9</b> de tal forma <b>que no se repitan
-	   en cada columna, fila y cuadrante</b>./p>
+	   en cada columna, fila y cuadrante</b>.</p>
 	</div>
 
 	<div class="col s6 l6 xl6 m6">
@@ -18,7 +24,6 @@
 		<a href="#!" class="btn blue-grey lighten-5 keyboard" data-value=""><i class="material-icons">delete</i></a>
 		<a class="btn" href="#!" onclick="validate();">Evaluar</a>
 	</div>
-
 </div>
 <div class="fixed-action-btn">
 	<a class="btn-floating btn-large green" onclick="apretaste.send({command: 'SUDOKU'});">
