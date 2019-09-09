@@ -1,15 +1,4 @@
 <div class="row">
-	<div class="col s12 l12 m12 x12">
-	<p>Rellene las celdas vac&iacute;as con un n&uacute;mero del <b>1 al 9</b> de tal forma <b>que no se repitan</b>
-	   en cada columna, fila y cuadrante. Los cuadrantes est&aacute;n delimitados por los borders negros.
-	   Despl&aacute;cese hacia abajo para ver la soluci&oacute;n.</p>
-	</div>
-</div>
-
-<div class="row">
-	<div class="col s6 l3 m6 xl6 sm6 offset-l3">
-		<a class="btn" href="#!" onclick="apretaste.send({command: 'SUDOKU'});" >Otro Sudoku!"</a>
-	</div>
 	<div class="col s6 l3 m6 xl6 ">
 		<a class="btn" href="#!" onclick="validate();">Evaluar</a>
 	</div>
@@ -20,6 +9,7 @@
 		<%- problem %>
 	</div>
 </div>
+
 <div class="row">
 	<div class="col right">
 		<a href="#!" class="btn blue-grey lighten-5 keyboard" data-value=""><i class="material-icons">delete</i></a>
@@ -29,6 +19,13 @@
 	</div>
 </div>
 
+<div class="row">
+	<div class="col s12 l12 m12 x12">
+	<p>Rellene las celdas vac&iacute;as con un n&uacute;mero del <b>1 al 9</b> de tal forma <b>que no se repitan</b>
+	   en cada columna, fila y cuadrante. Los cuadrantes est&aacute;n delimitados por los borders negros.
+	   Toque cada casilla vacia y use este teclado. Vaya evaluando el resultado hasta que lo resuelva.</p>
+	</div>
+</div>
 <div class="fixed-action-btn">
 	<a class="btn-floating btn-large green" onclick="apretaste.send({command: 'SUDOKU'});">
 		<i class="large material-icons">refresh</i>

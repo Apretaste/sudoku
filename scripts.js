@@ -60,12 +60,14 @@ function validate(){
   allCells.removeClass('square-selected');
 
   var valid = true;
+  var invalidCount = 0;
   for (var i =0; i<81;i++) {
     var v = -1;
     if (sudoku[i] === 0) {
       if (typeof sudokuGame.userSolution[i] !== 'undefined') v = sudokuGame.userSolution[i];
       if (original[i] !== v) {
         valid = false;
+        invalidCount++;
         $('#sudoku-cell-'+i).addClass('red lighten-3');
       }
     }
@@ -74,7 +76,7 @@ function validate(){
   if (valid) {
     showToast('Bien !! Resolviste el Sudoku!');
   } else {
-    showToast('Mal !! Algo no est&aacute; bien en tu Sudoku!');
+    showToast('Mal !! Tienes ' + invalidCount + ' casillas incorrectas');
   }
 
   return valid;
