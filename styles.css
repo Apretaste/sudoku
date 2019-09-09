@@ -33,7 +33,7 @@ input.select-dropdown {
 }
 
 .keyboard {
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   line-height: inherit;
   font-weight: normal;
   font-style: normal;
@@ -46,7 +46,7 @@ input.select-dropdown {
   -webkit-font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
   padding-left: 1.3rem;
-  padding-right: 1.3rem;
+  padding-right: 1.4rem;
 }
 
 @keyframes blinker {

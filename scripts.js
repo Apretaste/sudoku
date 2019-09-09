@@ -61,6 +61,7 @@ function validate(){
 
   var valid = true;
   var invalidCount = 0;
+  var emptyCount = 0;
   for (var i =0; i<81;i++) {
     var v = -1;
     if (sudoku[i] === 0) {
@@ -71,7 +72,7 @@ function validate(){
         {
           invalidCount++;
           $('#sudoku-cell-'+i).addClass('red lighten-3');
-        }
+        } else emptyCount++;
       }
     }
   }
@@ -79,7 +80,7 @@ function validate(){
   if (valid) {
     showToast('Bien !! Resolviste el Sudoku!');
   } else {
-    showToast('Mal !! Tienes ' + invalidCount + ' casillas incorrectas');
+    showToast('Mal !! ' + (emptyCount > 0 ? 'Te faltan casillas.':'') + (invalidCount>0 ?' Tienes ' + invalidCount + ' incorrectas':''));
   }
 
   return valid;
