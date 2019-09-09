@@ -29,9 +29,16 @@ $(function(){
     $(this).addClass('blink_me');
     //$(this).addClass('btn');
 
-    $(".row-" + row).addClass('row-selected');
-    $(".col-" + col).addClass('col-selected');
-    $(".square-" + sq).addClass('square-selected');
+    var eRow = $(".row-" + row);
+    var eCol = $(".col-" + col);
+    var eSq = $(".square-" + sq);
+    eRow.addClass('row-selected');
+    eCol.addClass('col-selected');
+    eSq.addClass('square-selected');
+
+    eRow.removeClass('red lighten-3');
+    eCol.removeClass('red lighten-3');
+    eSq.removeClass('red lighten-3');
   });
 
   $(".keyboard").click(function(){
