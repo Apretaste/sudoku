@@ -67,8 +67,11 @@ function validate(){
       if (typeof sudokuGame.userSolution[i] !== 'undefined') v = sudokuGame.userSolution[i];
       if (original[i] !== v) {
         valid = false;
-        invalidCount++;
-        $('#sudoku-cell-'+i).addClass('red lighten-3');
+        if (v !== -1)
+        {
+          invalidCount++;
+          $('#sudoku-cell-'+i).addClass('red lighten-3');
+        }
       }
     }
   }
