@@ -18,12 +18,13 @@
 
 	<div class="col s6 l6 xl6 m6">
 		<% for (var i = 1; i<=9; i++) { %>
-			<a href="#!" class="btn blue keyboard" data-value="<%= i %>"><%= i %></a>
+			<a style="margin-bottom:2px;" href="#!" class="btn blue keyboard right" data-value="<%= i %>"><%= i %></a>
 			<% if (i % 3 == 0){  %><br/><% } %>
 		<% } %>
-		<a href="#!" class="btn blue-grey lighten-5 keyboard" data-value=""><i class="material-icons">delete</i></a>
+		<a href="#!" class="btn blue lighten-5 keyboard" data-value=""><i class="material-icons">delete</i></a>
 		<a class="btn" href="#!" onclick="validate();">Evaluar</a>
 	</div>
+	<br/><br/>
 </div>
 <div class="fixed-action-btn">
 	<a class="btn-floating btn-large green" onclick="apretaste.send({command: 'SUDOKU'});">
