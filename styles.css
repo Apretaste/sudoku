@@ -45,6 +45,8 @@ input.select-dropdown {
   direction: ltr;
   -webkit-font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
+  padding-left: 1.3rem;
+  padding-right: 1.3rem;
 }
 
 @keyframes blinker {
