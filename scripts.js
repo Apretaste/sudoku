@@ -1,4 +1,3 @@
-
 function showToast(text) {
   M.toast({
     html: text
@@ -10,8 +9,8 @@ var sudokuGame = {
   selected: null
 };
 
-$(function(){
-  $(".sudoku-hole").click(function(){
+$(function () {
+  $(".sudoku-hole").click(function () {
 
     sudokuGame.selected = $(this).attr('id');
 
@@ -41,7 +40,7 @@ $(function(){
     eSq.removeClass('red lighten-3');
   });
 
-  $(".keyboard").click(function(){
+  $(".keyboard").click(function () {
     if (sudokuGame.selected !== null) {
       var cell = $('#' + sudokuGame.selected);
       cell.html($(this).attr('data-value'));
@@ -50,7 +49,7 @@ $(function(){
   });
 });
 
-function validate(){
+function validate() {
 
   var allCells = $(".sudoku-cell");
   allCells.removeClass('red lighten-3');
@@ -62,25 +61,32 @@ function validate(){
   var valid = true;
   var invalidCount = 0;
   var emptyCount = 0;
-  for (var i =0; i<81;i++) {
+  for (var i = 0; i < 81; i++) {
     var v = -1;
     if (sudoku[i] === 0) {
-      if (typeof sudokuGame.userSolution[i] !== 'undefined') v = sudokuGame.userSolution[i];
+      if (typeof sudokuGame.userSolution[i] !== 'undefined') {
+        if (sudokuGame.userSolution[i] !== '') {
+          v = sudokuGame.userSolution[i];
+        }
+      }
       if (original[i] !== v) {
         valid = false;
-        if (v !== -1)
-        {
+        if (v !== -1) {
           invalidCount++;
-          $('#sudoku-cell-'+i).addClass('red lighten-3');
-        } else emptyCount++;
+          $('#sudoku-cell-' + i).addClass('red lighten-3');
+        }
+        else {
+          emptyCount++;
+        }
       }
     }
   }
 
   if (valid) {
     showToast('Bien !! Resolviste el Sudoku!');
-  } else {
-    showToast('Mal !! ' + (emptyCount > 0 ? 'Te faltan casillas.':'') + (invalidCount>0 ?' Tienes ' + invalidCount + ' incorrectas':''));
+  }
+  else {
+    showToast('Mal !! ' + (emptyCount > 0 ? 'Te faltan casillas.' : '') + (invalidCount > 0 ? ' Tienes ' + invalidCount + ' incorrectas' : ''));
   }
 
   return valid;
