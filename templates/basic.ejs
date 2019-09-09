@@ -1,22 +1,22 @@
 <div class="row">
-	<div class="col">
+	<div class="col s12 l6 offset-l3 m6 offset-m3 xl6 offset-xl3">
 	<h1>A jugar Sudoku!</h1>
 	</div>
 </div>
 
 <div class="row">
-	<div class="col s12 l12 m12 x12">
+	<div class="col s12 l6 offset-l3 m6 offset-m3 x12">
 		<%- problem %>
 	</div>
 </div>
 
 <div class="row">
-	<div class="col s6 l6 xl6 m62">
+	<div class="col s6 l3 offset-l3 xl4 offset-xl3 m3 offset-m3">
 	<p>Toque cada casilla vacia para poner un n&uacute;mero del <b>1 al 9</b> de tal forma <b>que no se repitan
 	   en cada columna, fila y cuadrante</b>.</p>
 	</div>
 
-	<div class="col s6 l6 xl6 m6">
+	<div class="col s6 l4 xl3 m4">
 		<% for (var i = 1; i<=9; i++) { %>
 			<a style="margin-bottom:2px;" href="#!" class="btn blue keyboard" data-value="<%= i %>"><%= i %></a>
 			<% if (i % 3 == 0){  %><br/><% } %>
