@@ -84,6 +84,14 @@ function validate() {
 
   if (valid) {
     showToast('Bien !! Resolviste el Sudoku!');
+
+    apretaste.send({
+			command: "SUDOKU SOLVE",
+			data: {
+			},
+			redirect: false
+		});
+
   }
   else {
     showToast('Mal !! ' + (emptyCount > 0 ? 'Te faltan casillas.' : '') + (invalidCount > 0 ? ' Tienes ' + invalidCount + ' incorrectas' : ''));
