@@ -3,14 +3,13 @@
 use Apretaste\Challenges;
 use Apretaste\Request;
 use Apretaste\Response;
-use Framework\Database;
 
 /**
  * Sudoku
  *
  * @author kumahacker
  */
-class Service 
+class Service
 {
 
 	/**
@@ -43,10 +42,10 @@ class Service
 
 		// create response
 		$responseContent = [
-			'sudoku'        => $sudoku,
-			'original'      => $original,
+			'sudoku' => $sudoku,
+			'original' => $original,
 			//'solution'      => $htmlsolution,
-			'problem'       => $htmlproblem,
+			'problem' => $htmlproblem,
 			'problem_print' => $forprint
 		];
 
@@ -56,7 +55,7 @@ class Service
 	/**
 	 * SOLVE subservice
 	 *
-	 * @param \Apretaste\Request  $request
+	 * @param \Apretaste\Request $request
 	 * @param \Apretaste\Response $response
 	 */
 	public function _solve(Request $request, Response &$response)
@@ -178,7 +177,7 @@ class Service
 	/**
 	 * Print sudoku
 	 *
-	 * @param      $sudoku
+	 * @param $sudoku
 	 * @param bool $for_print
 	 *
 	 * @return string
