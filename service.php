@@ -4,21 +4,14 @@ use Apretaste\Challenges;
 use Apretaste\Request;
 use Apretaste\Response;
 
-/**
- * Sudoku
- *
- * @author kumahacker
- */
 class Service
 {
-
 	/**
 	 * Function executed when the service is called
 	 *
 	 */
 	public function _main(Request $request, Response &$response)
 	{
-		$response->setLayout('sudoku.ejs');
 		$sudoku = [];
 		for ($i = 0; $i < 81; $i++) {
 			$sudoku[] = 0;
@@ -37,14 +30,12 @@ class Service
 		}
 
 		$htmlproblem = $this->print_sudoku($sudoku);
-		// $htmlsolution = $this->print_sudoku($solution);
 		$forprint = $this->print_sudoku($sudoku, true);
 
 		// create response
 		$responseContent = [
 			'sudoku' => $sudoku,
 			'original' => $original,
-			//'solution'      => $htmlsolution,
 			'problem' => $htmlproblem,
 			'problem_print' => $forprint
 		];
