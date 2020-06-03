@@ -1,20 +1,24 @@
 <?php
 
+use Apretaste\Challenges;
+use Apretaste\Request;
+use Apretaste\Response;
+
 /**
  * Sudoku
  *
  * @author kumahacker
  */
-class SudokuService extends ApretasteService
+class Service
 {
 
 	/**
 	 * Function executed when the service is called
 	 *
 	 */
-	public function _main()
+	public function _main(Request $request, Response &$response)
 	{
-		$this->response->setLayout('sudoku.ejs');
+		$response->setLayout('sudoku.ejs');
 		$sudoku = [];
 		for ($i = 0; $i < 81; $i++) {
 			$sudoku[] = 0;
@@ -38,39 +42,66 @@ class SudokuService extends ApretasteService
 
 		// create response
 		$responseContent = [
-			'sudoku'        => $sudoku,
-			'original'      => $original,
+			'sudoku' => $sudoku,
+			'original' => $original,
 			//'solution'      => $htmlsolution,
-			'problem'       => $htmlproblem,
+			'problem' => $htmlproblem,
 			'problem_print' => $forprint
 		];
 
-		$this->response->setTemplate('basic.ejs', $responseContent);
+		$response->setTemplate('basic.ejs', $responseContent);
 	}
 
-	public function _solve()
+	/**
+	 * SOLVE subservice
+	 *
+	 * @param \Apretaste\Request $request
+	 * @param \Apretaste\Response $response
+	 */
+	public function _solve(Request $request, Response &$response)
 	{
-		Challenges::complete("complete-sudoku", $this->request->person->id);
+		Challenges::complete("complete-sudoku", $request->person->id);
 	}
 
+	/**
+	 * ROW of cell
+	 *
+	 * @param $cell
+	 *
+	 * @return float
+	 */
 	private function return_row($cell)
 	{
 		return floor($cell / 9);
 	}
 
-
+	/**
+	 * COL of cell
+	 *
+	 * @param $cell
+	 *
+	 * @return int
+	 */
 	private function return_col($cell)
 	{
 		return $cell % 9;
 	}
 
-
+	/**
+	 * Block of cell
+	 *
+	 * @param $cell
+	 *
+	 * @return float|int
+	 */
 	private function return_block($cell)
 	{
 		return floor($this->return_row($cell) / 3) * 3 + floor($this->return_col($cell) / 3);
 	}
 
-
+	/**
+	 * Is posssible row
+	 */
 	private function is_possible_row($number, $row, $sudoku)
 	{
 		$possible = true;
@@ -83,7 +114,15 @@ class SudokuService extends ApretasteService
 		return $possible;
 	}
 
-
+	/**
+	 * Is posible column?
+	 *
+	 * @param $number
+	 * @param $col
+	 * @param $sudoku
+	 *
+	 * @return bool
+	 */
 	private function is_possible_col($number, $col, $sudoku)
 	{
 		$possible = true;
@@ -96,7 +135,15 @@ class SudokuService extends ApretasteService
 		return $possible;
 	}
 
-
+	/**
+	 * Is possible block?
+	 *
+	 * @param $number
+	 * @param $block
+	 * @param $sudoku
+	 *
+	 * @return bool
+	 */
 	public function is_possible_block($number, $block, $sudoku)
 	{
 		$possible = true;
@@ -109,7 +156,15 @@ class SudokuService extends ApretasteService
 		return $possible;
 	}
 
-
+	/**
+	 * Is possible number?
+	 *
+	 * @param $cell
+	 * @param $number
+	 * @param $sudoku
+	 *
+	 * @return bool
+	 */
 	private function is_possible_number($cell, $number, $sudoku)
 	{
 		$row = $this->return_row($cell);
@@ -119,7 +174,14 @@ class SudokuService extends ApretasteService
 		return $this->is_possible_row($number, $row, $sudoku) and $this->is_possible_col($number, $col, $sudoku) and $this->is_possible_block($number, $block, $sudoku);
 	}
 
-
+	/**
+	 * Print sudoku
+	 *
+	 * @param $sudoku
+	 * @param bool $for_print
+	 *
+	 * @return string
+	 */
 	private function print_sudoku($sudoku, $for_print = false)
 	{
 		$html = "<table align = \"center\" cellspacing = \"1\" cellpadding = \"2\">\n";
@@ -200,7 +262,14 @@ class SudokuService extends ApretasteService
 		return $html;
 	}
 
-
+	/**
+	 * Is correct row?
+	 *
+	 * @param $row
+	 * @param $sudoku
+	 *
+	 * @return bool
+	 */
 	private function is_correct_row($row, $sudoku)
 	{
 		for ($x = 0; $x <= 8; $x++) {
@@ -210,7 +279,14 @@ class SudokuService extends ApretasteService
 		return count(array_diff([1, 2, 3, 4, 5, 6, 7, 8, 9], $row_temp)) == 0;
 	}
 
-
+	/**
+	 * Is correct column?
+	 *
+	 * @param $col
+	 * @param $sudoku
+	 *
+	 * @return bool
+	 */
 	private function is_correct_col($col, $sudoku)
 	{
 		for ($x = 0; $x <= 8; $x++) {
@@ -220,7 +296,14 @@ class SudokuService extends ApretasteService
 		return count(array_diff([1, 2, 3, 4, 5, 6, 7, 8, 9], $col_temp)) == 0;
 	}
 
-
+	/**
+	 * Is correct block?
+	 *
+	 * @param $block
+	 * @param $sudoku
+	 *
+	 * @return bool
+	 */
 	private function is_correct_block($block, $sudoku)
 	{
 		for ($x = 0; $x <= 8; $x++) {
@@ -230,7 +313,13 @@ class SudokuService extends ApretasteService
 		return count(array_diff([1, 2, 3, 4, 5, 6, 7, 8, 9], $block_temp)) == 0;
 	}
 
-
+	/**
+	 * Is sudoku solved?
+	 *
+	 * @param $sudoku
+	 *
+	 * @return bool
+	 */
 	private function is_solved_sudoku($sudoku)
 	{
 		for ($x = 0; $x <= 8; $x++) {
@@ -243,6 +332,14 @@ class SudokuService extends ApretasteService
 		return true;
 	}
 
+	/**
+	 * Calculate possible values for cell
+	 *
+	 * @param $cell
+	 * @param $sudoku
+	 *
+	 * @return array
+	 */
 	private function determine_possible_values($cell, $sudoku)
 	{
 		$possible = [];
@@ -255,13 +352,26 @@ class SudokuService extends ApretasteService
 		return $possible;
 	}
 
-
+	/**
+	 * calculate random possible value for cell?
+	 *
+	 * @param $possible
+	 * @param $cell
+	 *
+	 * @return mixed
+	 */
 	private function determine_random_possible_value($possible, $cell)
 	{
 		return $possible[$cell][rand(0, count($possible[$cell]) - 1)];
 	}
 
-
+	/**
+	 * Scan sudoku
+	 *
+	 * @param $sudoku
+	 *
+	 * @return bool
+	 */
 	private function scan_sudoku_for_unique($sudoku)
 	{
 		for ($x = 0; $x <= 80; $x++) {
@@ -277,8 +387,15 @@ class SudokuService extends ApretasteService
 		return $possible;
 	}
 
-
-	private function remove_attempt($attempt_array, $number)
+	/**
+	 * Remove an attempt
+	 *
+	 * @param $attempt_array
+	 * @param $number
+	 *
+	 * @return array
+	 */
+	private function removeAttempt($attempt_array, $number)
 	{
 		$new_array = [];
 		for ($x = 0; $x < count($attempt_array); $x++) {
@@ -290,8 +407,14 @@ class SudokuService extends ApretasteService
 		return $new_array;
 	}
 
-
-	public function print_possible($possible)
+	/**
+	 * Output possible
+	 *
+	 * @param $possible
+	 *
+	 * @return string
+	 */
+	public function printPossible($possible)
 	{
 		$html = '<table bgcolor = "#ff0000" cellspacing = "1" cellpadding = "2">';
 		for ($x = 0; $x <= 8; $x++) {
@@ -310,8 +433,14 @@ class SudokuService extends ApretasteService
 		return $html;
 	}
 
-
-	public function next_random($possible)
+	/**
+	 * Get next random
+	 *
+	 * @param $possible
+	 *
+	 * @return int
+	 */
+	public function getNextRandom($possible)
 	{
 		$max = 9;
 		for ($x = 0; $x <= 80; $x++) {
@@ -324,7 +453,11 @@ class SudokuService extends ApretasteService
 		return $min_choices;
 	}
 
-
+	/**
+	 * Solve sudoku
+	 *
+	 * @param $sudoku
+	 */
 	public function solve(&$sudoku)
 	{
 		$start = microtime();
@@ -340,10 +473,10 @@ class SudokuService extends ApretasteService
 				$sudoku = array_pop($saved_sud);
 			}
 
-			$what_to_try = $this->next_random($next_move);
+			$what_to_try = $this->getNextRandom($next_move);
 			$attempt = $this->determine_random_possible_value($next_move, $what_to_try);
 			if (count($next_move[$what_to_try]) > 1) {
-				$next_move[$what_to_try] = $this->remove_attempt($next_move[$what_to_try], $attempt);
+				$next_move[$what_to_try] = $this->removeAttempt($next_move[$what_to_try], $attempt);
 				array_push($saved, $next_move);
 				array_push($saved_sud, $sudoku);
 			}
