@@ -1,6 +1,7 @@
 <?php
 
 use Apretaste\Challenges;
+use Apretaste\Level;
 use Apretaste\Request;
 use Apretaste\Response;
 
@@ -52,6 +53,7 @@ class Service
 	public function _solve(Request $request, Response &$response)
 	{
 		Challenges::complete("complete-sudoku", $request->person->id);
+		Level::setExperience('WIN_SUDOKU', $request->person->id);
 	}
 
 	/**
