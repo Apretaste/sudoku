@@ -35,7 +35,7 @@ class Service
 		$forprint = $this->print_sudoku($sudoku, true);
 
 		// hash del board
-		$hash = sha1(serialize([$sudoku,$original]));
+		$hash = sha1(serialize([$sudoku, $original]));
 
 		// ver si tiene alguna partida abierta con este board
 		$openMatch = Game::getOpenMatch('sudoku', $request->person->id, $hash);
@@ -70,12 +70,16 @@ class Service
 	 */
 	public function _solve(Request $request, Response &$response)
 	{
-		Challenges::complete("complete-sudoku", $request->person->id);
-		Level::setExperience('WIN_SUDOKU', $request->person->id);
-
 		$matchId = $request->input->data->matchId ?? null;
+		$personId = $request->person->id;
+
 		if ($matchId !== null) {
-			Game::finishMatch($matchId, [$request->person->id]);
+			// si es participante y si no ha ganado antes esa partida
+			if (Game::checkParticipant($matchId, $personId) && !Game::checkWinner($matchId, $personId)) {
+				Challenges::complete("complete-sudoku", $personId);
+				Level::setExperience('WIN_SUDOKU', $personId);
+				Game::finishMatch($matchId, [$personId]);
+			}
 		}
 
 	}
@@ -204,15 +208,15 @@ class Service
 		$html = "<table align = \"center\" cellspacing = \"1\" cellpadding = \"2\">\n";
 
 		$squares = [
-			1,1,1,2,2,2,3,3,3,
-			1,1,1,2,2,2,3,3,3,
-			1,1,1,2,2,2,3,3,3,
-			4,4,4,5,5,5,6,6,6,
-			4,4,4,5,5,5,6,6,6,
-			4,4,4,5,5,5,6,6,6,
-			7,7,7,8,8,8,9,9,9,
-			7,7,7,8,8,8,9,9,9,
-			7,7,7,8,8,8,9,9,9
+			1, 1, 1, 2, 2, 2, 3, 3, 3,
+			1, 1, 1, 2, 2, 2, 3, 3, 3,
+			1, 1, 1, 2, 2, 2, 3, 3, 3,
+			4, 4, 4, 5, 5, 5, 6, 6, 6,
+			4, 4, 4, 5, 5, 5, 6, 6, 6,
+			4, 4, 4, 5, 5, 5, 6, 6, 6,
+			7, 7, 7, 8, 8, 8, 9, 9, 9,
+			7, 7, 7, 8, 8, 8, 9, 9, 9,
+			7, 7, 7, 8, 8, 8, 9, 9, 9
 		];
 
 		for ($x = 0; $x <= 8; $x++) {
@@ -260,12 +264,12 @@ class Service
 						$html .= '&nbsp;';
 					} else {*/
 					$html .= '&nbsp;';
-				/*$html .= '<select style="padding: 3px; border: none; background:white;"><option value="-">&nbsp;</option>';
-				for ($i = 1; $i <= 9; $i++) {
-					$html .= '<option value="'.$i.'">'.$i.'</option>';
-				}
-				$html .= '</select>';*/
-				   // }
+					/*$html .= '<select style="padding: 3px; border: none; background:white;"><option value="-">&nbsp;</option>';
+					for ($i = 1; $i <= 9; $i++) {
+						$html .= '<option value="'.$i.'">'.$i.'</option>';
+					}
+					$html .= '</select>';*/
+					// }
 				} else {
 					$html .= $v;
 				}
