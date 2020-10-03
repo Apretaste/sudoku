@@ -88,6 +88,7 @@ function validate() {
     apretaste.send({
 			command: "SUDOKU SOLVE",
 			data: {
+              matchId: $('#matchId').val()
 			},
 			redirect: false
 		});

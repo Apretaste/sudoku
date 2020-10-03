@@ -33,8 +33,25 @@ class Service
 		$htmlproblem = $this->print_sudoku($sudoku);
 		$forprint = $this->print_sudoku($sudoku, true);
 
+		// hash del board
+		$hash = sha1(serialize([$sudoku,$original]));
+
+		// ver si tiene alguna partida abierta con este board
+		$openMatch = Game::getOpenMatch('sudoku', $request->person->id, $hash);
+
+		if ($openMatch === null) {
+			// si no la tiene, registrar la partida
+			$matchId = Game::registerMatch('sudoku', $hash);
+
+			// agregarlo como participante
+			Game::addParticipant($matchId, $request->person->id);
+		} else {
+			$matchId = $openMatch->id;
+		}
+
 		// create response
 		$responseContent = [
+			'matchId' => $matchId,
 			'sudoku' => $sudoku,
 			'original' => $original,
 			'problem' => $htmlproblem,
