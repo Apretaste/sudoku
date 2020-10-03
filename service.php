@@ -4,6 +4,7 @@ use Apretaste\Challenges;
 use Apretaste\Level;
 use Apretaste\Request;
 use Apretaste\Response;
+use Apretaste\Game;
 
 class Service
 {
@@ -71,6 +72,12 @@ class Service
 	{
 		Challenges::complete("complete-sudoku", $request->person->id);
 		Level::setExperience('WIN_SUDOKU', $request->person->id);
+
+		$matchId = $request->input->data->matchId ?? null;
+		if ($matchId !== null) {
+			Game::finishMatch($matchId, [$request->person->id]);
+		}
+
 	}
 
 	/**
